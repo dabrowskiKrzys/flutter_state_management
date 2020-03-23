@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:state_management/font_size_switch.dart';
 import 'package:state_management/font_weight_switch.dart';
 
 void main() => runApp(MyApp());
@@ -33,12 +34,17 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView(
-        children: <Widget>[
-          Divider(),
-          FontWeightSwitch(),
-          Divider(),
-        ],
+      body: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: ListView(
+          children: <Widget>[
+            Divider(),
+            FontWeightSwitch(),
+            Divider(),
+            FontSizeSwitch(),
+            Divider(),
+          ],
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

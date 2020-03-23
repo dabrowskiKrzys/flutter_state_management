@@ -13,7 +13,7 @@ class FontWeightSwitchState extends State<FontWeightSwitch> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
           "Bold Font",
@@ -27,7 +27,6 @@ class FontWeightSwitchState extends State<FontWeightSwitch> {
   void onChanged(bool newValue) {
     setState(() {
       boldEnabled = newValue;
-    });
-    
+    });    
   }
 }
