@@ -1,39 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_management/settings/user_settings.dart';
 
-class FontSizeSwitch extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return FontSizeSwitchState();
-  }
-}
-
-class FontSizeSwitchState extends State<FontSizeSwitch> {
-  double fontSize = 14.0;
-
+class FontSizeSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var userSettings = Provider.of<UserSettings>(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
           "Font Size",
-          style: TextStyle(fontSize: fontSize),
+          style: userSettings.textStyle
         ),
         Slider(
-          value: fontSize,
-          onChanged: onChanged,
+          value: userSettings.fontSize,
+          onChanged: (double newValue) {
+            userSettings.setFontSize(newValue);
+          },
           min: 10.0,
           max: 20.0,
           divisions: 5,
-          label: fontSize.toString(),
+          label: userSettings.fontSize.toString(),
         )
       ],
     );
-  }
-
-  void onChanged(double newValue) {
-    setState(() {
-      fontSize = newValue;
-    });
   }
 }

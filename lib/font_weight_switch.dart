@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_management/settings/user_settings.dart';
 
-class FontWeightSwitch extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return FontWeightSwitchState();
-  }
-}
-
-class FontWeightSwitchState extends State<FontWeightSwitch> {
-  bool boldEnabled = false;
-
+class FontWeightSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var userSettings = Provider.of<UserSettings>(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
           "Bold Font",
-          style: TextStyle(fontWeight: boldEnabled ? FontWeight.bold : FontWeight.normal  ),
+          style: userSettings.textStyle
         ),
-        Switch(value: boldEnabled, onChanged: onChanged)
+        Switch(
+          value: userSettings.boldFont,
+          onChanged: (bool newValue) {
+            userSettings.setBoldFont(newValue);
+          },
+        )
       ],
     );
-  }
-
-  void onChanged(bool newValue) {
-    setState(() {
-      boldEnabled = newValue;
-    });    
   }
 }
